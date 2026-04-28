@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 import { useRouter } from "next/navigation"; // we use this hook for example to navigate when user click login to home page
 import axios from "axios";
 import ButtonSpiner from "@/components/ButtonSpiner";
+import { domain } from "@/utils/constants";
 const RegisterForm = () => {
   const router = useRouter();
   const [email, setEmail] = useState("");
@@ -18,7 +19,7 @@ const RegisterForm = () => {
     if (password === "") return toast.error("password required");
     try {
       setLoading(true);
-      await axios.post("http://localhost:3000/api/users/register", {
+      await axios.post(`${domain}/api/users/register`, {
         username,
         email,
         password,

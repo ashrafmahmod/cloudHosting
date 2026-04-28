@@ -1,11 +1,12 @@
 import { Article } from "@/generated/prisma/client";
+import { domain } from "@/utils/constants";
 import { SingleArticle } from "@/utils/types";
 
 export async function getArticles(
   pageNumber: string | undefined,
 ): Promise<Article[]> {
   const response = await fetch(
-    `http://localhost:3000/api/articles?pageNumber=${pageNumber}`,
+    `${domain}/api/articles?pageNumber=${pageNumber}`,
   );
   // by default in modern next no cahce to cahce u need code
   // caching cases
@@ -23,7 +24,7 @@ export async function getArticles(
   return response.json();
 }
 export async function getArticlesCount(): Promise<number> {
-  const response = await fetch(`http://localhost:3000/api/articles/count`);
+  const response = await fetch(`${domain}/api/articles/count`);
   if (!response.ok) {
     throw new Error("failed to fetch articles count: " + response.status);
   }
@@ -35,7 +36,7 @@ export async function getArticlesBasedOnSearch(
   searchText: string,
 ): Promise<Article[]> {
   const response = await fetch(
-    `http://localhost:3000/api/articles/search?searchText=${searchText}`,
+    `${domain}/api/articles/search?searchText=${searchText}`,
   );
 
   // if (response.status === 404) {
@@ -50,9 +51,7 @@ export async function getArticlesBasedOnSearch(
 export async function getSingleArticle(
   articleId: string,
 ): Promise<SingleArticle> {
-  const response = await fetch(
-    `http://localhost:3000/api/articles/${articleId}`,
-  );
+  const response = await fetch(`${domain}/api/articles/${articleId}`);
   if (!response.ok) {
     throw new Error("failed to fetch articles:" + response.status);
   }

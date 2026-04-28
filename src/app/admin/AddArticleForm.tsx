@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { toast } from "react-toastify";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import { domain } from "@/utils/constants";
 
 const AddArticleForm = () => {
   const [title, setTitle] = useState("");
@@ -15,7 +16,7 @@ const AddArticleForm = () => {
     if (description === "") return toast.error("description required");
     try {
       await axios.post(
-        `http://localhost:3000/api/articles`,
+        `${domain}/api/articles`,
         {
           title,
           description,

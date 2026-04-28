@@ -6,6 +6,7 @@ import { useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
+import { domain } from "@/utils/constants";
 interface CommentItemProps {
   comment: CommentWithUser;
   userId: number | undefined;
@@ -18,7 +19,7 @@ const CommentItem = ({ comment, userId }: CommentItemProps) => {
     try {
       if (window.confirm("you want delete this comment , are you sure?")) {
       }
-      await axios.delete(`http://localhost:3000/api/comments/${comment.id}`);
+      await axios.delete(`${domain}/api/comments/${comment.id}`);
       router.refresh();
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {

@@ -6,6 +6,7 @@ interface AddCommentFormProps {
 }
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import { domain } from "@/utils/constants";
 const AddCommentForm = ({ articleId }: AddCommentFormProps) => {
   const router = useRouter();
   const notify = () => toast("comment added successfully");
@@ -14,7 +15,7 @@ const AddCommentForm = ({ articleId }: AddCommentFormProps) => {
     e.preventDefault();
     if (text === "") return toast.error("please add comment");
     try {
-      await axios.post(`http://localhost:3000/api/comments`, {
+      await axios.post(`${domain}/api/comments`, {
         text,
         articleId,
       });

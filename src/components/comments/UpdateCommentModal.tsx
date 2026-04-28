@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 import axios from "axios";
 import { IoMdCloseCircleOutline } from "react-icons/io";
+import { domain } from "@/utils/constants";
 interface UpdateCommentModalProps {
   setOpen: Dispatch<SetStateAction<boolean>>;
   text: string;
@@ -20,7 +21,7 @@ const UpdateCommentModal = ({
     e.preventDefault();
     if (updatedText === "") return toast.info("Pls write comment!");
     try {
-      await axios.put(`http://localhost:3000/api/comments/${commentId}`, {
+      await axios.put(`${domain}/api/comments/${commentId}`, {
         text: updatedText,
       });
       router.refresh();

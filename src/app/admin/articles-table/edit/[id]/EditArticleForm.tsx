@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { Article } from "@/generated/prisma/client";
+import { domain } from "@/utils/constants";
 
 interface EditArticleFormProps {
   article: Article;
@@ -18,7 +19,7 @@ const EditArticleForm = ({ article }: EditArticleFormProps) => {
     if (title === "") return toast.error("title required");
     if (description === "") return toast.error("description required");
     try {
-      await axios.put(`http://localhost:3000/api/articles/${article.id}`, {
+      await axios.put(`${domain}/api/articles/${article.id}`, {
         title,
         description,
       });
