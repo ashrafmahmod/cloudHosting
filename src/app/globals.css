@@ -1,0 +1,42 @@
+@import "tailwindcss";
+
+:root {
+  /* i commented the default */
+  /* --background: #ffffff;
+  --foreground: #171717; */
+
+  --bg-color: #efefef;
+}
+
+@theme inline {
+  /* i commented the default */
+  /* --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono); */
+}
+/* i need this @layer base {} coz if i reset padding and using tailwincss and ave element padding not working coz p0 will overwrite */
+@layer base {
+  * {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    /* font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; */
+  }
+}
+body {
+  background: var(--bg-color);
+}
+/*  dynamic */
+.fix-height {
+  min-height: calc(100vh - 150px);
+}
+/*  fixed */
+.overflow-height {
+  height: calc(100vh - 150px);
+}
+
+button:disabled {
+  cursor: not-allowed;
+
+}
